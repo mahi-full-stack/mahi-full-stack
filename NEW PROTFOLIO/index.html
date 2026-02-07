@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ha-mim FrontEnd Dev</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#0e0e0e;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+/* ===== GLOBAL ===== */
+section{padding:80px 10%;}
+h2{text-align:center;font-size:2.5rem;margin-bottom:50px;}
+.neon{color:#87CEEB;text-shadow:0 0 10px #87CEEB;}
+
+/* ===== HERO ===== */
+/* ===== NAVBAR BASE ===== */
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(43,15,20,0.75);
+  backdrop-filter:blur(12px);
+  z-index:1000;
+}
+
+.logo{
+  color:#87CEEB;
+  font-size:22px;
+  font-weight:700;
+}
+
+/* ===== HAMBURGER ICON ===== */
+.menu-toggle{
+  width:30px;
+  cursor:pointer;
+  display:none;
+}
+
+.menu-toggle span{
+  display:block;
+  height:3px;
+  width:100%;
+  background:#87CEEB;
+  margin:6px 0;
+  transition:.4s;
+  border-radius:5px;
+}
+
+/* ===== LINKS DESKTOP ===== */
+.nav-links{
+  display:flex;
+  gap:20px;
+}
+
+.nav-links a{
+  color:#87CEEB;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* ===== MOBILE STYLE ===== */
+@media(max-width:768px){
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .nav-links{
+    position:absolute;
+    top:70px;
+    left:50%;
+    transform:translateX(-50%) translateY(-20px);
+    width:90%;
+    background:rgba(114,47,55,0.95);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    flex-direction:column;
+    text-align:center;
+    padding:10px 0;
+    opacity:0;
+    pointer-events:none;
+    transition:.4s ease;
+  }
+
+  .nav-links a{
+    padding:15px;
+    font-size:18px;
+    border-radius:12px;
+    transition:.3s;
+  }
+
+  .nav-links a:hover{
+    background:#87CEEB;
+    color:#000;
+    box-shadow:0 0 15px #87CEEB;
+  }
+
+  .nav-links.active{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateX(-50%) translateY(0);
+  }
+
+  /* HAMBURGER → CLOSE */
+  .menu-toggle.active span:nth-child(1){
+    transform:rotate(45deg) translate(6px,6px);
+  }
+  .menu-toggle.active span:nth-child(2){
+    opacity:0;
+  }
+  .menu-toggle.active span:nth-child(3){
+    transform:rotate(-45deg) translate(7px,-7px);
+  }
+}
+
+/* HERO OFFSET */
+#hero{
+  padding-top:110px;
+}
+
+
+
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:linear-gradient(135deg,#722F37,#2b0f14);
+}
+
+.hero-text{
+  max-width:600px;
+}
+
+.hero h1{
+  font-size:3rem;
+  line-height:1.3;
+}
+
+.hero-img img{
+  width:320px;
+  border-radius:20px;
+  box-shadow:0 0 40px #87CEEB;
+}
+
+/* ===== TIMELINE ===== */
+.timeline{
+  position:relative;
+  max-width:700px;
+  margin:auto;
+}
+
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:50%;
+  top:0;
+  width:4px;
+  height:0;
+  background:#87CEEB;
+  box-shadow:0 0 20px #87CEEB;
+  transition:1s;
+}
+
+.timeline.show::before{height:100%;}
+
+.timeline-item{
+  padding:20px;
+  width:50%;
+}
+
+.timeline-item:nth-child(odd){margin-left:50%;}
+
+/* ===== SKILLS ===== */
+.skills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  justify-content:center;
+}
+
+.skill{
+  padding:20px 30px;
+  border-radius:50px;
+  background:#722F37;
+  transition:.4s;
+  cursor:pointer;
+}
+
+.skill:hover{
+  background:#87CEEB;
+  color:#000;
+  box-shadow:0 0 25px #87CEEB;
+}
+
+
+/* ===== payment ===== */
+
+.payments{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  margin-top:40px;
+}
+
+.pay-card{
+  background:#722F37;
+  padding:20px;
+  border-radius:20px;
+  text-align:center;
+  font-size:18px;
+  cursor:pointer;
+  transition:.4s;
+}
+
+.pay-card:hover{
+  background:#87CEEB;
+  color:#000;
+  box-shadow:0 0 30px #87CEEB;
+}
+
+
+
+/* ===== VIDEOS ===== */
+.shorts{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+}
+
+.shorts iframe{
+  width:100%;
+  height:350px;
+  border-radius:20px;
+}
+
+.slider{
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+}
+
+.slider img{
+  width:320px;
+  border-radius:20px;
+  transition:.4s;
+}
+
+.slider img:hover{
+  transform:scale(1.05);
+}
+
+
+
+/* ===== Feelance ===== */
+.freelance-links{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+  margin-top:40px;
+}
+
+.freelance-card{
+  background:#722F37;
+  padding:30px;
+  border-radius:25px;
+  text-align:center;
+  transition:.4s;
+}
+
+.freelance-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 35px #87CEEB;
+}
+
+.freelance-card h3{
+  font-size:26px;
+  margin-bottom:10px;
+}
+
+.freelance-btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 30px;
+  border-radius:40px;
+  text-decoration:none;
+  font-weight:700;
+  color:#000;
+  transition:.3s;
+}
+
+/* Fiverr */
+.fiverr{
+  background:#11cc00;
+}
+
+.fiverr:hover{
+  box-shadow:0 0 25px #00ff88;
+}
+
+/* Upwork */
+.upwork{
+  background:#11cc00;
+}
+
+.upwork:hover{
+  box-shadow:0 0 25px #00ff88;
+}
+
+/* ===== PROJECTS ===== */
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+
+.project-card{
+  background:#722F37;
+  padding:25px;
+  border-radius:20px;
+  transition:.4s;
+}
+
+.project-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 30px #87CEEB;
+}
+
+.project-card h3{
+  color:#87CEEB;
+  margin-bottom:10px;
+}
+
+.project-card span{
+  font-size:14px;
+  opacity:.8;
+}
+
+.demo-btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:10px 20px;
+  border-radius:30px;
+  background:#87CEEB;
+  color:#000;
+  text-decoration:none;
+  font-weight:600;
+  transition:.3s;
+}
+
+.demo-btn:hover{
+  background:#00ffff;
+  box-shadow:0 0 20px #00ffff;
+}
+
+/* Pricing  */
+.pricing{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+  margin-top:50px;
+}
+
+.price-card{
+  background:#722F37;
+  padding:30px;
+  border-radius:25px;
+  text-align:center;
+  position:relative;
+  transition:.4s;
+}
+
+.price-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 40px #87CEEB;
+}
+
+.price-card h3{
+  font-size:24px;
+  margin-bottom:15px;
+  color:#87CEEB;
+}
+
+.price{
+  font-size:40px;
+  font-weight:700;
+  margin-bottom:20px;
+  text-shadow:0 0 15px #87CEEB;
+}
+
+.price-card ul{
+  list-style:none;
+  margin-bottom:25px;
+}
+
+.price-card ul li{
+  margin:10px 0;
+  opacity:.9;
+}
+
+.price-btn{
+  display:inline-block;
+  padding:12px 30px;
+  background:#87CEEB;
+  color:#000;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+  transition:.3s;
+}
+
+.price-btn:hover{
+  background:#00ffff;
+  box-shadow:0 0 20px #00ffff;
+}
+
+/* POPULAR CARD */
+.popular{
+  border:2px solid #00ffff;
+  transform:scale(1.05);
+}
+
+.badge{
+  position:absolute;
+  top:-15px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#00ffff;
+  color:#000;
+  padding:5px 15px;
+  border-radius:20px;
+  font-size:14px;
+  font-weight:600;
+}
+
+/* ===== Additional ===== */
+.extra-services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+  margin-top:40px;
+}
+
+.service-card{
+  background:#722F37;
+  padding:30px;
+  border-radius:25px;
+  text-align:center;
+  transition:.4s;
+}
+
+.service-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 35px #87CEEB;
+}
+
+.service-card h3{
+  color:#87CEEB;
+  margin-bottom:10px;
+}
+
+.service-card p{
+  opacity:.85;
+}
+
+.service-price{
+  font-size:22px;
+  margin:20px 0;
+  text-shadow:0 0 10px #87CEEB;
+}
+
+.service-btn{
+  display:inline-block;
+  padding:10px 25px;
+  background:#87CEEB;
+  color:#000;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+  transition:.3s;
+}
+
+.service-btn:hover{
+  background:#00ffff;
+  box-shadow:0 0 20px #00ffff;
+}
+
+
+
+/* ===== FOOTER ===== */
+footer{
+  background:#2b0f14;
+  text-align:center;
+  padding:60px 20px;
+}
+
+.socials a{
+  margin:0 10px;
+  font-size:24px;
+  color:#87CEEB;
+}
+
+/* ===== WHATSAPP FLOAT ===== */
+.whatsapp{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  background:#25D366;
+  color:#fff;
+  padding:15px;
+  border-radius:50%;
+  font-size:24px;
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(37,211,102,.7);}
+  70%{box-shadow:0 0 0 20px rgba(37,211,102,0);}
+  100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .hero{flex-direction:column;text-align:center;}
+  .hero-img{margin-top:40px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<nav class="navbar">
+  <div class="logo">MyPortfolio</div>
+
+  <div class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="nav-links" id="navLinks">
+    <a href="#hero">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#freelance">Hire Me</a>
+    <a href="#additional">Services</a>
+  </div>
+</nav>
+
+
+<section class="hero" id="hero">
+  <div class="hero-text">
+    <h1>Hi, I'm <span class="neon">Ha-mim Ahmed Mahi</span><br>Web Application Developer <br> Turning Ideas into Reality</h1>
+  </div>
+  <div class="hero-img">
+    <img src="me.jpg" alt="">
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section>
+  <h2 class="neon">Experience</h2>
+  <div class="timeline">
+    <div class="timeline-item">2023 – Frontend Developer</div>
+    <div class="timeline-item">2024 – Freelance Designer</div>
+    <div class="timeline-item">2025 – Frontend Projects</div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section>
+  <h2 class="neon">Skills</h2>
+  <div class="skills">
+    <div class="skill">HTML</div>
+    <div class="skill">CSS</div>
+    <div class="skill">JavaScript</div>
+    <div class="skill">Node JS</div>
+    <div class="skill">React</div>
+    <div class="skill">MongoDB</div>
+    <div class="skill">C++</div>
+    <div class="skill">Java</div>
+    <div class="skill">Python</div>
+    <div class="skill">C</div>
+    <div class="skill">Graphic Design</div>
+    <div class="skill">UI Design</div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2 class="neon">Projects</h2>
+
+  <div class="project-grid">
+
+    <div class="project-card">
+      <h3>DCM Store E-commerce</h3>
+      <p>Modern responsive e-commerce ShowCase website.</p>
+      <span>HTML • CSS • JavaScript</span>
+
+      <a href="https://dcm-store.netlify.app/" target="_blank" class="demo-btn">
+        View Live Demo
+      </a>
+    </div>
+
+    <div class="project-card">
+      <h3>Portfolio Website</h3>
+      <p>Neon styled personal portfolio Website Multi-page.</p>
+      <span>HTML • CSS • JS</span>
+
+      <a href="https://ha-mimahmedmahifrontenddev.netlify.app/" target="_blank" class="demo-btn">
+        View Live Demo
+      </a>
+    </div>
+
+    <div class="project-card">
+      <h3>Admin Panel/Dashboard</h3>
+      <p>Dashboard.</p>
+      <span>HTML • CSS • JavaScript</span>
+
+      <a href="https://dashboarduiforntendmahidev.netlify.app/" target="_blank" class="demo-btn">
+        View Live Demo
+      </a>
+    </div>
+
+    <div class="project-card">
+      <h3>ShowCase</h3>
+      <p>Multi-Page Showcase Coffee Shop Website.</p>
+      <span>HTML • CSS • JS</span>
+
+      <a href="https://coffeehamimahmedmahidev.netlify.app/" target="_blank" class="demo-btn">
+        View Live Demo
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- Freelance -->
+<section id="freelance">
+  <h2 class="neon">Hire Me On</h2>
+
+  <div class="freelance-links">
+
+    <!-- Fiverr -->
+    <div class="freelance-card">
+      <h3>Fiverr</h3>
+      <p>Quick & secure orders via Fiverr platform.</p>
+
+      <a href="https://www.fiverr.com/s/jjDw3za"
+         target="_blank"
+         class="freelance-btn fiverr">
+         Order on Fiverr
+      </a>
+    </div>
+
+    <!-- Upwork -->
+    <div class="freelance-card">
+      <h3>Upwork</h3>
+      <p>Long-term projects & contracts via Upwork.</p>
+
+      <a href="https://www.upwork.com/freelancers/~0137dc70f3d1802937?mp_source=share"
+         target="_blank"
+         class="freelance-btn upwork">
+         Hire on Upwork
+      </a>
+    </div>
+
+  </div>
+  <p style="text-align:center;opacity:.7;margin-top:20px;">
+  All payments and contracts are handled securely through Upwork & Fiverr.
+</p>
+
+</section>
+
+
+
+<!-- Pricing -->
+
+<section id="pricing">
+  <h2 class="neon">Pricing Plans</h2>
+
+  <div class="pricing">
+
+    <!-- BASIC -->
+    <div class="price-card">
+      <h3>Basic</h3>
+      <div class="price">$42</div>
+
+      <ul>
+        <li>Single Page Landing/Portfolio</li>
+        <li>Responsive Design</li>
+        <li>HTML/CSS/JS</li>
+        <li>3 Days Delivery</li>
+      </ul>
+
+      <a href="https://wa.me/8801688649597" class="price-btn">Order Now</a>
+    </div>
+
+    <!-- POPULAR -->
+    <div class="price-card popular">
+      <span class="badge">Most Popular</span>
+      <h3>Standard</h3>
+      <div class="price">$120</div>
+
+      <ul>
+        <li>Multi-page (3-5)</li>
+        <li>Advanced Animation</li>
+        <li>HTML/CSS/JS</li>
+        <li>7 Days Delivery</li>
+      </ul>
+
+      <a href="https://wa.me/8801688649597" class="price-btn">Order Now</a>
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="price-card">
+      <h3>Premium</h3>
+      <div class="price">$250+</div>
+
+      <ul>
+        <li>Unlimited Pages</li>
+        <li>Custom UI/UX</li>
+        <li>JavaScript Features</li>
+        <li>10 Days Delivery</li>
+      </ul>
+
+      <a href="https://wa.me/8801688649597" class="price-btn">Order Now</a>
+    </div>
+
+    <!-- BASIC -->
+    <div class="price-card">
+      <h3>Only ShowCase</h3>
+      <div class="price">$70+</div>
+
+      <ul>
+        <li>Showcase/E-commerce/Picing Website</li>
+        <li>Multi-page/Duel Language/Multi-Language</li>
+        <li>HTML/CSS/JS</li>
+        <li>5 Days Delivery</li>
+      </ul>
+
+      <a href="https://wa.me/8801688649597" class="price-btn">Order Now</a>
+    </div>
+
+  </div>
+  <p style="text-align:center;opacity:.7;margin-top:20px;">
+  Pricing may vary based on project requirements.
+</p>
+
+</section>
+
+<!-- Payment -->
+<section>
+  <h2 class="neon">Payment Methods</h2>
+
+  <div class="payments">
+    <div class="pay-card">💳 Visa</div>
+    <div class="pay-card">📱 bKash</div>
+    <div class="pay-card">💳 MasterCard</div>
+    <div class="pay-card">🌍 Payoneer</div>
+    <div class="pay-card">🏦 Bank Transfer (On Request)</div>
+  </div>
+
+  <p style="text-align:center;opacity:.7;margin-top:20px;">
+    Bank details will be shared securely after project confirmation.
+  </p>
+  <p style="text-align:center;opacity:.7;margin-top:20px;">
+  Secure & trusted payment methods accepted worldwide.
+</p>
+
+</section>
+
+
+
+<!-- VIDEOS -->
+<section>
+  <h2 class="neon">YouTube Showcase</h2>
+  <div class="shorts">
+    <iframe src="https://www.youtube.com/embed/tZ_6wAabRVQ?si=lDRwe7o_VN4eiP8f"></iframe>
+    <iframe src="https://www.youtube.com/embed/ms83ioKSudQ?si=B-SMXgDF8qyztig3"></iframe>
+    <iframe src="https://www.youtube.com/embed/FafqIYHXUoA?si=E2oSUUmjHFfRiBK5"></iframe>
+    <iframe src="https://www.youtube.com/embed/Dxeg5zIAWw0?si=qsJR_Lyxy0uC8yba"></iframe>
+  </div>
+  <p style="text-align:center;opacity:.7;margin-top:20px;">
+  Visit My YouTube Channel For More.
+</p>
+
+</section>
+
+
+
+<!-- additional Services -->
+<section id="additional">
+  <h2 class="neon">Additional Services</h2>
+
+  <div class="extra-services">
+
+    <!-- Graphic Design -->
+    <div class="service-card">
+      <h3>🎨 Graphic Design</h3>
+      <p>Social media posts, banners, thumbnails & brand visuals.</p>
+      <div class="service-price">Starting at $5</div>
+
+      <a href="https://wa.me/8801688649597?text=Hi%20I%20need%20Graphic%20Design%20service"
+         target="_blank"
+         class="service-btn">
+         Request Service
+      </a>
+    </div>
+
+    <!-- Data Entry -->
+    <div class="service-card">
+      <h3>📊 Data Entry</h3>
+      <p>Accurate data entry, Excel sheets & web research.</p>
+      <div class="service-price">Starting at $8</div>
+
+      <a href="https://wa.me/8801688649597?text=Hi%20I%20need%20Data%20Entry%20service"
+         target="_blank"
+         class="service-btn">
+         Request Service
+      </a>
+    </div>
+
+    <!-- Virtual Assistant -->
+    <div class="service-card">
+      <h3>🧑‍💻 Virtual Assistant</h3>
+      <p>Email handling, scheduling, admin & online tasks.</p>
+      <div class="service-price">Starting at $10/hr</div>
+
+      <a href="https://wa.me/8801688649597?text=Hi%20I%20need%20Virtual%20Assistant%20service"
+         target="_blank"
+         class="service-btn">
+         Request Service
+      </a>
+    </div>
+
+  </div>
+  <p style="text-align:center;opacity:.7;margin-top:20px;">
+  Pricing may vary based on project requirements.
+</p>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <h2>Let's Build Something Amazing Together!</h2>
+  <div class="socials">
+    <a href="https://www.facebook.com/share/17qHyuj5h8/">Facebook</a>
+    <a href="https://www.instagram.com/designbyhamim?igsh=N3V2OHlibmVwd29t">Instagram</a>
+    <a href="mailto:hamim.ahmed.mahi.freelancer@gmail.com">Mail</a>
+  </div>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/8801688649597">💬</a>
+
+<script>
+const heroText=document.querySelector('.hero-text');
+const timeline=document.querySelector('.timeline');
+
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>100) heroText.classList.add('show');
+  if(window.scrollY>600) timeline.classList.add('show');
+});
+
+function preview(img){
+  document.getElementById('preview').src=img;
+}
+</script>
+
+<script>
+const toggle = document.getElementById("menuToggle");
+const nav = document.getElementById("navLinks");
+
+toggle.addEventListener("click", () => {
+  toggle.classList.toggle("active");
+  nav.classList.toggle("active");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    toggle.classList.remove("active");
+    nav.classList.remove("active");
+  });
+});
+</script>
+
+
+</body>
+</html>
+
